@@ -43,9 +43,9 @@
 ?>
 
 <?php
-    echo "Задание 46: ";
+    echo "Задание 60: ";
     $array = ['Привет, ', 'мир', '!'];
-    $result = implode('', $array);
-    echo $result;
+    $text = implode('', $array);
+    echo $text;
     echo "<BR>";
 ?>
