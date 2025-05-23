@@ -2,7 +2,7 @@
     echo "Задание 2: ";
     echo "<BR>";
     function DomainValidate($url) {
-        $pattern = '#^(http://|https://)([a-zA-Z0-9-]+\.[a-zA-Z]{2,})(/.*)?$#';
+        $pattern = '#^(https?://)([a-zA-Z0-9-]+\.[a-zA-Z]{2,})(/.*)?$#';
         return preg_match($pattern, $url) === 1;
     }   
     $domains = [
