@@ -3,7 +3,7 @@ require_once 'db.php';
 
 function editForm() {
     $output = '';
-    $list = mysqli_query($GLOBALS['conn'], "SELECT id, surname, name FROM contacts ORDER BY surname, name");
+    $list = mysqli_query($GLOBALS['conn'], "SELECT id, surname, name FROM contacts");
     
     $currentId = $_GET['id'] ?? null;
     if (!$currentId && $row = mysqli_fetch_assoc($list)) {

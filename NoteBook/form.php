@@ -41,6 +41,6 @@
             <textarea name="comment" placeholder="Краткий комментарий"><?= isset($row['comment']) ? htmlspecialchars($row['comment']) : '' ?></textarea>
         </div>
 
-        <button type="submit"<?= isset($button) ? htmlspecialchars($button) : '' ?>" name="button" class="form-btn"><?= isset($button) ? htmlspecialchars($button) : '' ?>Сохранить</button>
+        <button type="submit"<?= isset($button) ? htmlspecialchars($button) : '' ?> name="button" class="form-btn"><?= isset($button) ? htmlspecialchars($button) : '' ?>Сохранить</button>
     </div>
 </form>
