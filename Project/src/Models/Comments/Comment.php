@@ -51,11 +51,14 @@ class Comment extends ActiveRecordEntity
     {
         return $this->createdAt;
     }
-
     public static function findByArticleId(int $articleId): array
     {
         $db = \src\Services\Db::getInstance();
         $sql = 'SELECT * FROM `' . static::getTableName() . '` WHERE article_id = :article_id ORDER BY created_at ASC';
         return $db->query($sql, [':article_id' => $articleId], static::class);
+    }
+    public function getAuthorId(): int
+    {
+        return $this->authorId;
     }
 }

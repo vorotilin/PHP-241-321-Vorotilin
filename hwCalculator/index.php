@@ -6,7 +6,6 @@
     <title>241-321 Воротилин PHP Задание Calculator</title>
     <link rel="stylesheet" href="nomalize.css">
     <link rel="stylesheet" href="stylecalc.css">
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -37,6 +36,7 @@
                 <button class="calc-btn calc-mult">×</button>
                 <button class="calc-btn calc-minus">-</button>
                 <button class="calc-btn calc-plus">+</button>
+                <button class="calc-btn calc-btn-big calc-server">Трига</button>
             </div>
         </section>
     </main>

@@ -3,10 +3,10 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Date</th>
-      <th scope="col">Title</th>
-      <th scope="col">Text</th>
-      <th scope="col">Author</th>
+      <th scope="col">Дата</th>
+      <th scope="col">Название</th>
+      <th scope="col">Текст</th>
+      <th scope="col">Автор</th>
     </tr>
   </thead>
   <tbody>

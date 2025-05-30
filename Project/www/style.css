@@ -1,30 +1,67 @@
-/* --- Общие стили --- */
+:root {
+  --color-background: #1e1e1e;
+  --color-text: #ffffff;
+  --color-accent: #7fffd4;
+  --color-hover: #ff69b4;
+  --color-border: #444;
+
+  --bg-color: #1e1e1e;
+  --text-color: #ffffff;
+  --accent-color: #7fffd4;
+  --hover-color: #ff69b4;
+}
+
+/* --- Шрифты --- */
+@font-face {
+  font-family: 'Roboto';
+  font-weight: 400;
+  src: url('fonts/Roboto-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-weight: 500;
+  src: url('fonts/Roboto-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-weight: 200;
+  src: url('fonts/Roboto-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Gotham';
+  font-weight: 400;
+  src: url('fonts/Gotham-Black.ttf');
+}
+
+/* --- Базовые стили --- */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 200;
   font-size: 16px;
-  line-height: 1.5;
-  color: #333;
-  background-color: #f9f9f9;
+  color: var(--color-text);
+  background-color: var(--color-background);
   margin: 0;
   padding: 20px;
 }
 
-/* Контейнер для контента */
 .container {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
-  background: #fff;
+  background-color: #2c2c2c;
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   border-radius: 6px;
 }
 
 /* Заголовки */
 h1, h2, h3, h4 {
-  color: #222;
+  font-family: 'Gotham', sans-serif;
+  font-weight: 400;
+  color: var(--color-text);
   margin-top: 0;
   margin-bottom: 15px;
-  font-weight: 600;
 }
 
 /* Параграфы */
@@ -32,295 +69,78 @@ p {
   margin-bottom: 15px;
 }
 
-/* Кнопки */
-button, input[type="submit"] {
-  background-color: #007bff;
-  border: none;
-  padding: 10px 16px;
-  color: white;
-  font-size: 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.25s ease;
-}
-
-button:hover, input[type="submit"]:hover {
-  background-color: #0056b3;
-}
-
 /* Ссылки */
 a {
-  color: #007bff;
+  color: var(--color-accent);
+  font-weight: 500;
   text-decoration: none;
+  transition: color 0.2s;
 }
 
 a:hover {
-  text-decoration: underline;
+  color: var(--color-hover);
+}
+
+/* Кнопки */
+button,
+input[type="submit"],
+.btn {
+  background-color: var(--color-accent);
+  color: var(--color-background);
+  border: none;
+  padding: 10px 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+  margin-block: 1rem !important;
+}
+
+button:hover,
+input[type="submit"]:hover,
+.btn:hover {
+  background-color: var(--color-hover);
+  color: var(--color-text);
 }
 
 /* Формы */
-form {
-  margin-bottom: 20px;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
+input,
 textarea,
 select {
   width: 100%;
-  padding: 8px 10px;
+  padding: 10px;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-border);
   border-radius: 4px;
+  background-color: #2e2e2e;
+  color: var(--color-text);
   font-size: 1rem;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
+  margin-block: 1rem !important;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus,
+input:focus,
 textarea:focus,
 select:focus {
-  border-color: #007bff;
+  border-color: var(--color-accent);
   outline: none;
 }
 
-/* Таблицы */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-th, td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: left;
-}
-
-th {
-  background-color: #f4f4f4;
-  font-weight: 600;
-}
-
-/* Сообщения и ошибки */
-.message {
-  padding: 10px 15px;
-  margin-bottom: 20px;
-  border-radius: 4px;
-}
-
-.message.success {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
-}
-
-.message.error {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
-}
-
-/* Модальное окно */
-.modal-backdrop {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.5);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal {
-  background: white;
-  padding: 20px;
-  border-radius: 6px;
-  max-width: 400px;
-  width: 90%;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  position: relative;
-}
-
-.modal-header {
-  font-size: 1.25rem;
-  margin-bottom: 15px;
-  font-weight: 600;
-}
-
-.modal-close {
-  position: absolute;
-  top: 10px; right: 10px;
-  border: none;
-  background: transparent;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-/* Удобный отступ между элементами */
-.mb-15 {
-  margin-bottom: 15px;
-}
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modal.hidden {
-  display: none;
-}
-
-.modal-content {
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 8px;
-  width: 300px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  position: relative;
-}
-
-.close-button {
-  position: absolute;
-  top: 0.5rem;
-  right: 1rem;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #666;
-}
-/* Добавь в style.css */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.auth-form {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background: #fff;
-}
-
-.alert {
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 4px;
-}
-
-.alert-danger {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-}
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1050;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.4);
-}
-
-.modal.show {
-  display: block;
-}
-/* Модальное окно */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-}
-
-.modal.hidden {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.modal:not(.hidden) {
-  opacity: 1;
-  visibility: visible;
-}
-
-.modal-content {
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  width: 100%;
-  max-width: 400px;
-  position: relative;
-}
-
-.close-button {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 1.5rem;
-  cursor: pointer;
-  background: none;
-  border: none;
-}
-
-/* Форма входа */
-.auth-form input {
-  display: block;
-  width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.auth-form button {
-  width: 100%;
-  padding: 0.75rem;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-/* Модальное окно */
+/* Модальные окна */
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .modal-overlay.active {
@@ -329,19 +149,20 @@ th {
 }
 
 .modal-container {
-  background: white;
+  background: #2e2e2e;
+  color: var(--color-text);
   padding: 2rem;
-  border-radius: 8px;
-  width: 100%;
+  border-radius: 12px;
   max-width: 400px;
+  width: 100%;
   position: relative;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transform: translateY(-20px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transform: scale(0.95);
   transition: transform 0.3s ease;
 }
 
 .modal-overlay.active .modal-container {
-  transform: translateY(0);
+  transform: scale(1);
 }
 
 .modal-close {
@@ -349,20 +170,55 @@ th {
   top: 1rem;
   right: 1rem;
   font-size: 1.5rem;
-  line-height: 1;
   background: none;
   border: none;
+  color: var(--color-text);
   cursor: pointer;
-  color: #666;
 }
 
-/* Форма входа */
+/* Таблицы */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  color: var(--color-text);
+}
+
+th, td {
+  border: 1px solid var(--color-border);
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #333;
+  font-weight: 500;
+}
+
+/* Сообщения */
+.message {
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+}
+
+.message.success {
+  background-color: #00695c;
+  color: #ffffff;
+}
+
+.message.error {
+  background-color: #b00020;
+  color: #ffffff;
+}
+
+/* Авторизационная форма */
 .auth-form {
-  margin-top: 1rem;
-}
-
-.auth-form .form-group {
-  margin-bottom: 1rem;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #2e2e2e;
+  border-radius: 6px;
 }
 
 .auth-form label {
@@ -371,30 +227,84 @@ th {
   font-weight: 500;
 }
 
-.auth-form input {
+.auth-form input,
+.auth-form button {
   width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 0.75rem;
   font-size: 1rem;
 }
 
 .auth-form button {
-  width: 100%;
-  padding: 0.75rem;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
+  background: var(--color-accent);
+  color: var(--color-background);
 }
 
 .auth-form button:hover {
-  background: #0069d9;
+  background: var(--color-hover);
+  color: var(--color-text);
 }
-.navbar {
+
+/* Навигация и заголовок */
+.site-header {
+  background-color: var(--bg-color);
+  padding: 1rem 0;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: 'Gotham', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.nav {
+  flex: 1;
+  margin-left: 2rem;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: var(--hover-color);
+}
+
+.auth-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-greeting {
+  font-weight: 200;
+  font-size: 1rem;
+}
+input,
+textarea {
+  max-width: 100%;
+  box-sizing: border-box;
+  resize: none; 
+  overflow: hidden;
 }

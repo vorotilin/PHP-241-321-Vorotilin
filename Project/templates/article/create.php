@@ -10,11 +10,11 @@ if (!isset($_SESSION['user'])): ?>
             <input type="date" class="form-control" id="date" name="date">
         </div>
         <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
+            <label for="title" class="form-label">Название</label>
             <input type="text" class="form-control" id="title" name="title" required>
         </div>
         <div class="mb-3">
-            <label for="text" class="form-label">Text</label>
+            <label for="text" class="form-label">Текст</label>
             <textarea class="form-control" id="text" rows="3" name="text" required></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Сохранить запись</button>

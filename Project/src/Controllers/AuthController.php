@@ -18,7 +18,6 @@
             exit;
         }
         
-        // Ошибка аутентификации
         header('Location: /?auth_error=1');
         exit;
     }

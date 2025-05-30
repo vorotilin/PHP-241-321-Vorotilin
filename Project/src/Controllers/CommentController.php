@@ -7,7 +7,7 @@ use src\View\View;
 
 class CommentController
 {
-    private $view;
+    private View $view;
 
     public function __construct()
     {
@@ -16,18 +16,15 @@ class CommentController
 
     public function store(int $articleId): void
     {
-        session_start();
-
-        if (!isset($_SESSION['user'])) {
+        if (!isset($_SESSION['user']) || !isset($_SESSION['user']->id)) {
             die('Вы должны быть авторизованы для добавления комментария.');
         }
 
-        $user = $_SESSION['user'];
+        $userId = $_SESSION['user']->id;
 
         $comment = new Comment();
         $comment->setText($_POST['text']);
-        $comment->setAuthorId($user->id);                  
-        $comment->setAuthorNickname($user->nickname);     
+        $comment->setAuthorId($userId);
         $comment->setArticleId($articleId);
         $comment->save();
 
@@ -37,26 +34,15 @@ class CommentController
 
     public function edit(int $commentId): void
     {
-        session_start();
-
         $comment = Comment::getById($commentId);
 
-        if (!isset($_SESSION['user']) || $_SESSION['user']->id !== $comment->getAuthorId()) {
-            die('Доступ запрещён.');
-        }
 
         $this->view->renderHtml('comments/edit', ['comment' => $comment]);
     }
 
     public function update(int $commentId): void
     {
-        session_start();
-
         $comment = Comment::getById($commentId);
-
-        if (!isset($_SESSION['user']) || $_SESSION['user']->id !== $comment->getAuthorId()) {
-            die('Вы не можете редактировать этот комментарий.');
-        }
 
         $comment->setText($_POST['text']);
         $comment->save();
@@ -67,16 +53,18 @@ class CommentController
 
     public function delete(int $commentId): void
     {
-        session_start();
-
         $comment = Comment::getById($commentId);
 
-        if (!isset($_SESSION['user']) || $_SESSION['user']->id !== $comment->getAuthorId()) {
-            die('Удаление запрещено.');
-        }
 
         $articleId = $comment->getArticleId();
         $comment->delete();
+        if (
+            !$comment ||
+            !isset($_SESSION['user']->id) ||
+            ((string)$_SESSION['user']->id !== (string)$comment->getAuthorId())
+        ) {
+            die('Доступ запрещён.');
+        }
 
         header("Location: /student-241/Project/www/article/{$articleId}");
         exit;

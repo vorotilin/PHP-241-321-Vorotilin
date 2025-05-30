@@ -2,7 +2,7 @@
 
 <?php if (!isset($_SESSION['user'])): ?>
     <p class="text-danger">Вы должны быть авторизованы, чтобы редактировать комментарии.</p>
-<?php elseif ($_SESSION['user']->id !== $comment->getAuthorId()): ?>
+<?php elseif ((string)$_SESSION['user']->id !== (string)$comment->getAuthorId()): ?>
     <p class="text-danger">У вас нет прав редактировать этот комментарий.</p>
 <?php else: ?>
     <form action="<?= dirname($_SERVER['SCRIPT_NAME']) ?>/comments/<?= $comment->getId(); ?>/update" method="POST">
@@ -16,4 +16,4 @@
 <?php endif; ?>
 
 <?php require(dirname(__DIR__) . '/footer.html'); ?>
-<script src="script.js"></script>
+
