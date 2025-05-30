@@ -58,13 +58,6 @@ class CommentController
 
         $articleId = $comment->getArticleId();
         $comment->delete();
-        if (
-            !$comment ||
-            !isset($_SESSION['user']->id) ||
-            ((string)$_SESSION['user']->id !== (string)$comment->getAuthorId())
-        ) {
-            die('Доступ запрещён.');
-        }
 
         header("Location: /student-241/Project/www/article/{$articleId}");
         exit;
