@@ -1,26 +1,29 @@
 <?php
 
+use src\Controllers\ArticleController;
+use src\Controllers\AuthController;
+use src\Controllers\CommentController;
+use src\Controllers\MainController;
+
 return [
-    // '~^$~'=>[src\Controllers\MainController::class, 'main'],
-    '~^$~'=>[src\Controllers\ArticleController::class, 'index'],
-    '~article/(\d+)/edit~'=>[src\Controllers\ArticleController::class, 'edit'],
-    '~article/(\d+)/update~'=>[src\Controllers\ArticleController::class, 'update'],
-    '~^article/(\d+)$~'=>[src\Controllers\ArticleController::class, 'show'],
-    '~^article/(\d+)/delete$~'=>[src\Controllers\ArticleController::class, 'delete'],
-    '~^article/create$~'=>[src\Controllers\ArticleController::class, 'create'],
-    '~^article/store$~'=>[src\Controllers\ArticleController::class, 'store'],
-    '~^hello/(.+)$~'=>[src\Controllers\MainController::class,'sayHello'],
-    '~^login$~' => [src\Controllers\AuthController::class, 'login'],
-    '~^auth$~' => [src\Controllers\AuthController::class, 'authenticate'],
-    '~^logout$~' => [src\Controllers\AuthController::class, 'logout'],
-    '~^$~' => ['src\Controllers\ArticleController', 'index'],
-    '~^login$~' => [AuthController::class, 'login'],
-    '~^auth$~' => ['src\Controllers\AuthController', 'authenticate'],
-    '~^logout$~' => ['src\Controllers\AuthController', 'logout'],
-    '~^$~' => ['src\Controllers\ArticleController', 'index'],
-    '~^article/(\d+)/comments$~' => [src\Controllers\CommentController::class, 'store'],
-    '~^comments/(\d+)/edit$~' => [src\Controllers\CommentController::class, 'edit'],
-    '~^comments/(\d+)/update$~' => [src\Controllers\CommentController::class, 'update'],
-    '~^comments/(\d+)/delete$~' => [src\Controllers\CommentController::class, 'delete'],
-    '#^article/(\d+)$#' => [ArticleController::class, 'show'],
+    '~^$~' => [ArticleController::class, 'index'],
+
+    '~^article/create$~' => [ArticleController::class, 'create'],
+    '~^article/store$~' => [ArticleController::class, 'store'],
+    '~^article/(\d+)$~' => [ArticleController::class, 'show'],
+    '~^article/(\d+)/edit$~' => [ArticleController::class, 'edit'],
+    '~^article/(\d+)/update$~' => [ArticleController::class, 'update'],
+    '~^article/(\d+)/delete$~' => [ArticleController::class, 'delete'],
+    '~^article/(\d+)/comments$~' => [CommentController::class, 'store'],
+
+    '~^comments/(\d+)/edit$~' => [CommentController::class, 'edit'],
+    '~^comments/(\d+)/update$~' => [CommentController::class, 'update'],
+    '~^comments/(\d+)/delete$~' => [CommentController::class, 'delete'],
+
+    '~^hello/(.+)$~' => [MainController::class, 'sayHello'],
+
+    '~^login$~' => [AuthController::class, 'login'], 
+    '~^auth$~' => [AuthController::class, 'authenticate'],
+    '~^register$~' => [AuthController::class, 'register'],
+    '~^logout$~' => [AuthController::class, 'logout'],
 ];

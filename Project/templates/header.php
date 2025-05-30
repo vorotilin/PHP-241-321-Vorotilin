@@ -32,8 +32,9 @@ if (session_status() === PHP_SESSION_NONE) {
         <a href="/student-241/Project/templates/auth/logout.php" class="btn">Выйти</a>
       <?php else: ?>
         <button id="openLoginModal" class="btn">Войти</button>
+        <button id="openRegisterModal" class="btn">Зарегистрироваться</button>
       <?php endif; ?>
-    </div>
+  </div>
   </div>
 </header>
 
@@ -54,29 +55,57 @@ if (session_status() === PHP_SESSION_NONE) {
     </form>
   </div>
 </div>
+<div id="registerModal" class="modal-overlay hidden">
+  <div class="modal-container">
+    <button class="modal-close">&times;</button>
+    <h2>Регистрация</h2>
+    <form method="post" action="/student-241/Project/templates/auth/register.php">
+      <div class="form-group">
+        <label for="reg-nickname">Никнейм</label>
+        <input type="text" id="reg-nickname" name="nickname" required />
+      </div>
+      <div class="form-group">
+        <label for="reg-password">Пароль</label>
+        <input type="password" id="reg-password" name="password" required />
+      </div>
+      <button type="submit" class="btn">Зарегистрироваться</button>
+    </form>
+  </div>
+</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const loginModal = document.getElementById('loginModal');
-    const openBtn = document.getElementById('openLoginModal');
+    const openLoginBtn = document.getElementById('openLoginModal');
+    const registerModal = document.getElementById('registerModal');
+    const openRegisterBtn = document.getElementById('openRegisterModal');
 
-    if (openBtn) {
-      openBtn.addEventListener('click', () => {
+    if (openLoginBtn) {
+      openLoginBtn.addEventListener('click', () => {
         loginModal.classList.add('active');
       });
     }
 
-    const closeBtn = loginModal.querySelector('.modal-close');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', () => {
-        loginModal.classList.remove('active');
+    if (openRegisterBtn) {
+      openRegisterBtn.addEventListener('click', () => {
+        registerModal.classList.add('active');
       });
     }
 
-    loginModal.addEventListener('click', function (e) {
-      if (e.target === loginModal) {
+    const closeButtons = document.querySelectorAll('.modal-close');
+    closeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
         loginModal.classList.remove('active');
-      }
+        registerModal.classList.remove('active');
+      });
+    });
+
+    [loginModal, registerModal].forEach(modal => {
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+        }
+      });
     });
   });
 </script>
@@ -87,6 +116,19 @@ if (session_status() === PHP_SESSION_NONE) {
       const modal = document.getElementById('loginModal');
       modal.classList.add('active');
       alert('Неверный логин или пароль');
+    });
+  </script>
+<?php endif; ?>
+<?php if (isset($_GET['register_error'])): ?>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const modal = document.getElementById('registerModal');
+      modal.classList.add('active');
+      alert(
+        <?= $_GET['register_error'] === 'exists'
+          ? "'Пользователь с таким никнеймом уже существует'"
+          : "'Ошибка регистрации. Попробуйте снова.'" ?>
+      );
     });
   </script>
 <?php endif; ?>
